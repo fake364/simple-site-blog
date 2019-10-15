@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MyBlog</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+
+<div class="menu">
+
+    <% if(isAuthed){ %>
+        <a href="/add_post">Add post</a>
+        <a href="/logout">Logout</a>
+        <%= user.username %>
+    <% }else {
+    %>
+        <a href="/register">Регистрация</a>
+        <a href="/login">Логин</a>
+    <%
+    } %>
+</div>
+<div class="maincontainer">
+    <h1>Блог</h1>
+    <div class="container">
+
+        <% posts.forEach(function (post, index) { %>
+            <%- include('./post', {post: post,id:index}); %>
+        <% }); %>
+    </div>
+</div>
+</body>
+</html>
