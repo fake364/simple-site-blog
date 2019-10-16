@@ -1,9 +1,19 @@
 const passport = require('passport');
 const router = require('express').Router();
 const Users = require('../models/Users');
+const multer = require("multer");
+const imgUserInit = require('../script/imgcreate');
 
-router.post('/', async (req, res, next) => {
-    const {body: {username, password}} = req;
+const upload = multer({
+    dest: __dirname + '/../public/images'
+});
+
+
+router.post('/', upload.single("avatar"), async (req, res, next) => {
+    const {body: {username, password, description, date}} = req;
+    console.log(req.body);
+    console.log(req.file);
+
     if (await Users.exists({username: username})) {
         return res.status(404).render('register', {err: "This username is already exists"});
     }
@@ -22,16 +32,26 @@ router.post('/', async (req, res, next) => {
             },
         });
     }
-    const finalUser = new Users({username: username, password: password});
+    const finalUser = new Users({
+        username: username,
+        password: password,
+        about: description,
+        date: date,
+        image: req.file ? true : false
+    });
 
     finalUser.setPassword(password);
 
     return finalUser.save()
         .then(() => {
+            if (req.file) {
+                imgUserInit(req.file.path, username);
+            }
             req.logIn(finalUser, function (err) {
                 if (err) {
                     next(err);
                 } else {
+
                     res.redirect("/");
                 }
             });
