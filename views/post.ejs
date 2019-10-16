@@ -1,5 +1,8 @@
 <div class="postcard">
     <h2><a class="titlelink" href=<%= "/post/"+id %>><%= post.title %></a></h2>
     <div class="text"><%= post.text %></div>
-    <p><i>Author:<%= post.author %></i></p>
+    <p><i>Author:</i></p>
+    <div class="line">
+    <img src=<%= "/images/"+post.author+"/ico.png" %> /><div class="postauthor"><a class="userlink" href=<%= "/profile/"+post.author %>> <%= post.author %></a></div>
+    </div>
 </div>

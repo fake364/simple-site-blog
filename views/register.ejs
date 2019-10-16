@@ -3,7 +3,8 @@
 <head>
     <title>Регистрация</title>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
-
+    <link rel="stylesheet" href='/stylesheets/register.css'/>
+    <script src="/javascripts/checker.js"></script>
 </head>
 <body>
 <div class="menu">
@@ -13,14 +14,21 @@
     <h1>Регистрация</h1>
     <div class="container">
 
-        <form method="post" action="/auth">
+        <form enctype="multipart/form-data" method="post" id="regform" action="/auth">
             <% if(err != ""){ %>
-            <span style="color: red; "><%= err %></span>
+                <span style="color: red; "><%= err %></span>
             <% } %>
 
             <input type="text" placeholder="User Name" name="username" id="user" required/>
             <input type="password" placeholder="Password" name="password" id="pass" required/>
-            <button>OK</button>
+            <p style="color:red;" hidden id="passerr">Повторный пороль не подходит</p>
+            <input type="password" placeholder="Re-Password" id="repass" required/>
+            <textarea class="about" name="description" placeholder="Обо мне"></textarea>
+            Выберите изображение вашего профиля
+            <input type="file" name="avatar" accept="image/*">
+            Выберите дату вашего рождения
+            <input type="date" name="date"/>
+            <button onclick="checkAndSubmit()">OK</button>
         </form>
     </div>
 </div>

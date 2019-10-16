@@ -1,0 +1,5 @@
+public/images/*
+!public/images/user.png
+!public/images/ico.png
+
+

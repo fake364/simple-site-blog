@@ -16,6 +16,7 @@ const postRouter = require('../routes/post');
 const db = require('../config/mongo');
 const bodyParser = require('body-parser');
 const app = express();
+const profileRouter=require("../routes/profile");
 
 module.exports=  {
     createError,
@@ -35,5 +36,6 @@ module.exports=  {
     postRouter,
     db,
     bodyParser,
-    app
+    app,
+    profileRouter
 }
