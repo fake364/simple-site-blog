@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Регистрация</title>
+    <link rel='stylesheet' href='/stylesheets/profile.css'/>
+
+</head>
+<body>
+<h1><%= user.username %></h1>
+<div class="maincontainer">
+    <% if(user.image){ %>
+        <img alt src=<%= "../images/" + user.username + "/prof.png" %>>
+    <% }else{ %>
+        <img src=<%= "../images/user.png" %>>
+    <% } %>
+    <% if(user.about !== ''){ %>
+        <p>
+            <%= user.about %>
+        </p>
+    <% } %>
+    <% if(user.date){ %>
+        <p><%= user.date %>
+        </p>
+    <% } %>
+</div>
+</body>
+</html>

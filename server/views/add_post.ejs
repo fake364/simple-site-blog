@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавь пост</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+</head>
+<body>
+<div class="menu">
+    <a href="/">Главная</a>
+</div>
+<h1>Добавить пост</h1>
+<div class="container">
+
+    <form method="post">
+        <% if(err!=""){ %>
+        <span style="color: red; "><%=err %></span>
+        <% }%>
+
+        <input type="text" placeholder="Название публикации" name="title" maxlength="64" class="titlein" required/>
+        <textarea name="text" maxlength="1024" placeholder="Текст публикации" class="titlein" required></textarea>
+        <button>OK</button>
+    </form>
+</div>
+</body>
+</html>

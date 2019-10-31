@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Пост</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+
+</head>
+<body>
+<div class="menu">
+    <a href="/">Главная</a>
+</div>
+<div class="maincontainer">
+    <h1>Детализированный пост</h1>
+    <div class="container">
+        <div class="postcard">
+            <h2><%= post.title %></h2>
+            <div class="text"><%= post.text %></div>
+            <p><i>Author:<%= post.author %></i></p>
+        </div>
+    </div>
+    <h3>Комментарии</h3>
+    <% if(post.comments.length === 0){ %>
+        <p><i>No comments</i></p>
+    <% } %>
+    <% post.comments.forEach(function (comment) { %>
+        <div class="comment">
+            <h4><%= comment.author %></h4>
+            <%= comment.text %>
+        </div>
+    <% }); %>
+    <% if(!isAuthed){ %>
+        <p class="nocomment">Чтобы оставить комментарий, зарегистрируйтесь или войдите, используя логин и пароль</p>
+    <% }else{ %>
+        <form action=<%= id + "/comment" %> method="post">
+            <h3>Оставить комментарий</h3>
+            <textarea name="text" maxlength="128" class="commentarea" required placeholder="Комментарий"></textarea>
+            <button>Отправить</button>
+        </form>
+    <% } %>
+</div>
+</body>
+</html>
